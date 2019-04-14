@@ -1,13 +1,16 @@
 {
   "name": "relative-time-expression",
+  "version": "0.0.0",
   "description": "Parser for relative time expression",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "start": "lerna bootstrap",
+    "clean": "lerna clean --yes",
     "test": "jest",
     "test:watch": "jest --watch",
-    "publish": "lerna publish --conventional-commits --yes"
+    "pub": "lerna publish --conventional-commits --yes",
+    "prepublishOnly": "exit 1"
   },
   "repository": {
     "type": "git",
