@@ -1,0 +1,31 @@
+{
+  "name": "relative-time-expression",
+  "version": "0.1.0",
+  "description": "Parser for relative time expression",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frezc/relative-time-expression.git"
+  },
+  "keywords": [
+    "relative-time",
+    "moment",
+    "time"
+  ],
+  "author": "frezc (frezcw@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Frezc/relative-time-expression/issues"
+  },
+  "homepage": "https://github.com/Frezc/relative-time-expression#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  }
+}
