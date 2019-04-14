@@ -36,5 +36,6 @@
     "@types/moment": "^2.13.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.4.3"
-  }
+  },
+  "gitHead": "5056bb20325097bdc70b83d0168552fe2099a06a"
 }
