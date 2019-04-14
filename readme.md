@@ -3,20 +3,29 @@
 This is a expression for relative time. Inspired by Time Units of [grafana](https://grafana.com/).
 
 # Install
-```shell
-yarn add relative-time-expression
-// or
+
+## Install moment binding
+```sh
+npm install rte-moment
+```
+
+## Install core (Optional, If you don't use moment)
+```sh
 npm install relative-time-expression
 ```
 
 # Usage
 
-## Use moment binder
+## Moment binding
 ```javascript
-import parseToMoment from 'relative-time-expression/lib/moment';
+import parse from 'rte-moment';
+const m = parse('now-w/w');
 
+import moment from 'moment';
+moment().subtract(1, 'week').startOf('week').isSame(m); // true
 ```
 
+## Parse to ast
 ```javascript
 import { parse, encode } from 'relative-time-expression';
 const ast = parse('+M/M');
@@ -24,7 +33,7 @@ const ast = parse('+M/M');
 {
   type: 'Expression',
   start: 0,
-  end: 5,
+  end: 4,
   body: [
     {
       type: 'Offset',
@@ -32,24 +41,46 @@ const ast = parse('+M/M');
       number: 1,
       unit: 'M',
       start: 0,
-      end: 3,
+      end: 2,
     },
     {
       type: 'Period',
-      op: '\\',
+      op: '/',
       unit: 'M',
-      start: 3,
-      end: 5,
+      start: 2,
+      end: 4,
     }
   ]
 }
 */
-
-
 ```
 
-```javascript
+# API
 
+## rte-moment
+```typescript
+function parse(exp: string): moment.Moment;
+```
+
+## relative-time-expression
+You can check type definitions [here](https://github.com/Frezc/relative-time-expression/blob/master/packages/core/src/interface.ts).
+```typescript
+function parse(exp: string): Expression;
+function decode(exp: string): Expression;
+function encode(exp: InputExpression): string;
+function stringify(exp: InputExpression): string;
+
+class Tokenizer {
+  static parse(exp: string): Token[];
+  constructor(raw: string);
+  parse(): Token[];
+}
+
+class Parser {
+  static parse(tokens: Token[]): Expression;
+  constructor(tokens: Token[]);
+  parse(): Expression;
+}
 ```
 
 # Expression examples
