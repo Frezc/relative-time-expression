@@ -1,2 +1,6 @@
 node_modules
 coverage
+lib
+lerna-debug.log
+npm-debug.log
+packages/*/lib

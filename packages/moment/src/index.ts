@@ -2,7 +2,7 @@
  * moment binder
  */
 import moment from 'moment';
-import { parse } from './index';
+import { parse } from 'relative-time-expression';
 
 export default function parseToMoment(exp: string) {
   const ast = parse(exp);

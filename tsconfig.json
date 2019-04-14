@@ -8,17 +8,18 @@
     "noUnusedParameters": false,
     "noUnusedLocals": true,
     "noImplicitAny": false,
-    "target": "esnext",
+    "target": "es5",
     "pretty": true,
     "sourceMap": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "outDir": "lib",
-    "declarationDir": "types",
     "lib": [
       "dom",
       "es6"
     ],
   },
-  "include": ["src/**/*"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

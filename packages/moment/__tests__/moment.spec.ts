@@ -1,4 +1,4 @@
-import parseToMoment from '../src/moment';
+import parseToMoment from '../src/index';
 import moment from 'moment';
 
 describe('bind moment', () => {
