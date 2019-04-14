@@ -1,4 +1,4 @@
-import { Token, Expression, Offset, Period } from "./interface";
+import { Token, Expression, Offset, Period, Unit } from "./interface";
 
 export default class Parser {
   static parse(tokens: Token[]) {
@@ -56,7 +56,7 @@ export default class Parser {
         return this.parsePeriod();
       }
     }
-    this.unexpect('operator(+, -, /, \\)', token);
+    return this.unexpect('operator(+, -, /, \\)', token);
   }
 
   parseOffset(): Offset {
@@ -73,7 +73,7 @@ export default class Parser {
       type: 'Offset',
       op,
       number,
-      unit: unitToken.raw,
+      unit: unitToken.raw as Unit,
       start,
       end: unitToken.end,
     };
@@ -87,7 +87,7 @@ export default class Parser {
     return {
       type: 'Period',
       op,
-      unit: unitToken.raw,
+      unit: unitToken.raw as Unit,
       start,
       end: unitToken.end,
     };
@@ -98,10 +98,10 @@ export default class Parser {
       return this.pop;
     }
 
-    this.unexpect('unit(e.g. s, m, h, d, ...)', this.top);
+    return this.unexpect('unit(e.g. s, m, h, d, ...)', this.top);
   }
 
-  unexpect(required: string, found: Token) {
+  unexpect(required: string, found: Token): never {
     throw new Error(`expect ${required} but found ${found.raw} at (${found.start}, ${found.end})`);
   }
 }
