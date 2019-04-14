@@ -1,5 +1,7 @@
 # Relative time expression
 
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/Frezc/relative-time-expression/master.svg?style=flat-square)](https://codecov.io/gh/Frezc/relative-time-expression/)
+
 This is a expression for relative time. Inspired by Time Units of [grafana](https://grafana.com/).
 
 # Install
