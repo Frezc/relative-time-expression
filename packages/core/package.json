@@ -1,6 +1,6 @@
 {
   "name": "relative-time-expression",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parser for relative time expression",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -10,7 +10,9 @@
     "build": "rimraf ./lib && tsc",
     "prepublishOnly": "npm run build"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Frezc/relative-time-expression.git"
