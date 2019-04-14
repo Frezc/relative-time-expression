@@ -9,7 +9,7 @@
     "clean": "lerna clean --yes",
     "test": "jest",
     "test:watch": "jest --watch",
-    "pub": "lerna publish --conventional-commits --yes",
+    "pub": "lerna publish",
     "prepublishOnly": "exit 1"
   },
   "repository": {
