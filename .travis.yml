@@ -1,8 +1,9 @@
 language: node_js
 node_js: 10
-scripts:
+install:
   - yarn install
   - yarn start
-  - yarn test
   - npm install codecov -g
+script:
+  - yarn test
   - codecov
