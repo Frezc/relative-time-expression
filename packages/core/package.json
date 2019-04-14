@@ -10,7 +10,9 @@
     "build": "rimraf ./lib && tsc",
     "prepublishOnly": "npm run build"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Frezc/relative-time-expression.git"
