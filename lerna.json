@@ -6,7 +6,8 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "npmClient": "npm"
+      "npmClient": "npm",
+      "registry": "https://registry.npmjs.org/"
     }
   }
 }
