@@ -1,6 +1,6 @@
 # Relative time expression
 
-[![CircleCI branch](https://img.shields.io/circleci/project/github/Frezc/relative-time-expression/master.svg?style=flat-square)](https://circleci.com/gh/Frezc/relative-time-expression)
+[![travis](https://img.shields.io/travis/project/Frezc/relative-time-expression/master.svg?style=flat-square)](https://travis-ci.org/Frezc/relative-time-expression)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/Frezc/relative-time-expression/master.svg?style=flat-square)](https://codecov.io/gh/Frezc/relative-time-expression/)
 
 relative-time-expression: 
