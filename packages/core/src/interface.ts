@@ -1,4 +1,4 @@
-export type TokenType = 'unit' | 'ws' | 'int' | 'op' | 'keyword';
+export type TokenType = 'unit' | 'ws' | 'number' | 'op' | 'keyword';
 export type Unit = 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y';
 export interface Token {
   type: TokenType;

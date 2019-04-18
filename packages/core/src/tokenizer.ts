@@ -53,7 +53,7 @@ export default class Tokenizer {
   }
 
   readInt(): Token {
-    return this.readWhile('int', (c) => intRegexp.test(c));
+    return this.readWhile('number', (c) => intRegexp.test(c));
   }
   
   readOp(): Token {

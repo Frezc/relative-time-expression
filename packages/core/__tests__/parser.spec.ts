@@ -27,7 +27,7 @@ test('tokenize correctly', () => {
       end: 7,
     },
     {
-      type: 'int',
+      type: 'number',
       raw: '12',
       start: 7,
       end: 9,

@@ -64,7 +64,7 @@ export default class Parser {
     const op = this.pop.raw as '+' | '-';
     this.parseWs();
     let number = 1;
-    if (this.top.type === 'int') {
+    if (this.top.type === 'number') {
       number = parseInt(this.pop.raw, 10);
     }
     this.parseWs();
