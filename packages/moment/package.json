@@ -1,6 +1,6 @@
 {
   "name": "rte-moment",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "moment binding for relative time expression",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -30,7 +30,7 @@
   "homepage": "https://github.com/Frezc/relative-time-expression#readme",
   "dependencies": {
     "moment": "^2.24.0",
-    "relative-time-expression": "^0.3.0"
+    "relative-time-expression": "^0.3.1"
   },
   "devDependencies": {
     "@types/moment": "^2.13.0",
