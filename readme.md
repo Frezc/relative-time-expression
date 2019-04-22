@@ -21,6 +21,24 @@ npm install relative-time-expression
 
 # Usage
 
+## Expression
+
+The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can also omit it, like `""`(same as `"now"`), `"-1d"`. After `"now"`, you can append a series of *manipulation*. There are two types of *manipulation*, one is *offset*, the other is *period*.
+
+- *Offset*: Add(+) or Subtract(-) to current moment, constructed with op, integer(optional, default `1`) and unit(you can check blow).
+- *Period*: Point to start(/) or end(\\) of period that current moment fall into, constructed with op and unit.
+
+### unit table
+|unit|duration| 
+|---|-----|
+| y | year |
+| M | month |
+| w | week |
+| d | day |
+| h | hour |
+| m | minute |
+| s | second |
+
 ## Moment binding
 ```javascript
 import parse from 'rte-moment';
@@ -64,24 +82,31 @@ const ast = parse('+M/M');
 
 ## rte-moment
 ```typescript
+// parse expression to moment
 function parse(exp: string): moment.Moment;
 ```
 
 ## relative-time-expression
 You can check type definitions [here](https://github.com/Frezc/relative-time-expression/blob/master/packages/core/src/interface.ts).
 ```typescript
+// parse expression to ast
 function parse(exp: string): Expression;
+// same as parse
 function decode(exp: string): Expression;
+// encode ast to expression
 function encode(exp: InputExpression): string;
+// same as encode
 function stringify(exp: InputExpression): string;
 
 class Tokenizer {
+  // parse expression to tokens
   static parse(exp: string): Token[];
   constructor(raw: string);
   parse(): Token[];
 }
 
 class Parser {
+  // parse tokens to ast
   static parse(tokens: Token[]): Expression;
   constructor(tokens: Token[]);
   parse(): Expression;
@@ -108,5 +133,5 @@ The grammar is simple:
 <period>     ::= (/ | \) <ws> <unit>
 <number>    ::= ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') [<number>]
 <unit>       ::= 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y'
-<ws>         ::= ' ' | '\f' | '\r' | '\n' | '\v' | '\t' [<ws>]
+<ws>         ::= ' ' | '\r' | '\n' | '\t' [<ws>]
 ```

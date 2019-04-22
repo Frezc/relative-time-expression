@@ -46,4 +46,12 @@ describe('parse', () => {
   it('throw error when forget unit', () => {
     expect(() => parse(' now +1+d')).toThrow('expect unit(e.g. s, m, h, d, ...) but found + at (7, 8)');
   });
+
+  it('throw end of input error when stop after operator in offset', () => {
+    expect(() => parse(' now - ')).toThrow('expect integer or unit(e.g. s, m, h, d, ...) but get the end of input');
+  });
+
+  it('throw end of input error when stop after operator in period', () => {
+    expect(() => parse('now/')).toThrow('expect unit(e.g. s, m, h, d, ...) but get the end of input');
+  });
 });

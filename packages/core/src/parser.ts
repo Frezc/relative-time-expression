@@ -63,6 +63,9 @@ export default class Parser {
     const start = this.top.start;
     const op = this.pop.raw as '+' | '-';
     this.parseWs();
+    if (!this.top) {
+      return this.unexpect('integer or unit(e.g. s, m, h, d, ...)');
+    }
     let number = 1;
     if (this.top.type === 'number') {
       number = parseInt(this.pop.raw, 10);
@@ -94,14 +97,18 @@ export default class Parser {
   }
 
   parseUnit(): Token {
-    if (this.top.type === 'unit') {
+    if (this.top && this.top.type === 'unit') {
       return this.pop;
     }
 
     return this.unexpect('unit(e.g. s, m, h, d, ...)', this.top);
   }
 
-  unexpect(required: string, found: Token): never {
-    throw new Error(`expect ${required} but found ${found.raw} at (${found.start}, ${found.end})`);
+  unexpect(required: string, found?: Token): never {
+    if (found) {
+      throw new Error(`expect ${required} but found ${found.raw} at (${found.start}, ${found.end})`);
+    } else {
+      throw new Error(`expect ${required} but get the end of input`);
+    }
   }
 }
