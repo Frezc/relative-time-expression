@@ -37,7 +37,7 @@ export default class Tokenizer {
       return this.readNow();
     }
 
-    throw new Error(`unknown token '${nextChar}' at (${this.iter}, ${this.iter + 1})`);
+    throw new Error(`unknown token \`${nextChar}\` at (${this.iter}, ${this.iter + 1})`);
   }
 
   readNow(): Token {

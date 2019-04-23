@@ -106,9 +106,9 @@ export default class Parser {
 
   unexpect(required: string, found?: Token): never {
     if (found) {
-      throw new Error(`expect ${required} but found ${found.raw} at (${found.start}, ${found.end})`);
+      throw new Error(`expect \`${required}\` but found \`${found.raw}\` at (${found.start}, ${found.end})`);
     } else {
-      throw new Error(`expect ${required} but get the end of input`);
+      throw new Error(`expect \`${required}\` but get the end of input`);
     }
   }
 }
