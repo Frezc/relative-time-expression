@@ -1,4 +1,5 @@
 import { Token, Expression, Offset, Period, Unit } from "./interface";
+import { createError } from "./error";
 
 export default class Parser {
   static parse(tokens: Token[]) {
@@ -106,9 +107,16 @@ export default class Parser {
 
   unexpect(required: string, found?: Token): never {
     if (found) {
-      throw new Error(`expect ${required} but found \`${found.raw}\` at (${found.start}, ${found.end})`);
+      throw createError({
+        expect: required,
+        actual: found.raw,
+        start: found.start,
+        end: found.end,
+      });
     } else {
-      throw new Error(`expect ${required} but get the end of input`);
+      throw createError({
+        expect: required,
+      });
     }
   }
 }

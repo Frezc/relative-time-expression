@@ -1,4 +1,5 @@
 import { Token, TokenType } from "./interface";
+import { createError } from "./error";
 
 const wsRegexp = /^\s+/;
 const unitRegexp = /^[smhdwMy]/;
@@ -37,7 +38,11 @@ export default class Tokenizer {
       return this.readNow();
     }
 
-    throw new Error(`unknown token \`${nextChar}\` at (${this.iter}, ${this.iter + 1})`);
+    throw createError({
+      actual: nextChar,
+      start: this.iter,
+      end: this.iter + 1,
+    });
   }
 
   readNow(): Token {

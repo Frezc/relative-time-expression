@@ -9,3 +9,4 @@ export function parse(exp: string) {
 export { Parser, Tokenizer, encode };
 export const decode = parse;
 export const stringify = encode;
+export { ExpError } from './error';

@@ -43,10 +43,18 @@ The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can
 ```javascript
 import parse from 'rte-moment';
 const m = parse('now-w/w');
+// compatible with grafana, add forceEnd config to make `/` point to end of period
+const m1 = parse('now-w/w', { forceEnd: true });
 
 import moment from 'moment';
 moment().subtract(1, 'week').startOf('week').isSame(m); // true
+moment().subtract(1, 'week').endOf('week').isSame(m1); // true
 ```
+
+## Custom binding
+You can write binding with any time library.
+
+See moment binding code [here](https://github.com/Frezc/relative-time-expression/blob/master/packages/moment/src/index.ts).
 
 ## Parse to ast
 ```javascript
@@ -83,7 +91,7 @@ const ast = parse('+M/M');
 ## rte-moment
 ```typescript
 // parse expression to moment
-function parse(exp: string): moment.Moment;
+function parseToMoment(exp: string, options?: { forceEnd?: boolean; }): moment.Moment;
 ```
 
 ## relative-time-expression

@@ -36,7 +36,7 @@ describe('parse', () => {
   })
 
   it('throw error when token match failed', () => {
-    expect(() => parse(' no - d')).toThrow('unknown token \`n\` at (1, 2)');
+    expect(() => parse(' no - d')).toThrow('unexpected token \`n\` at (1, 2)');
   });
 
   it('throw error when forget operator', () => {
