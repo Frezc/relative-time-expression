@@ -1,6 +1,6 @@
 {
   "name": "relative-time-expression",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Parser for relative time expression",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
