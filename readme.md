@@ -86,6 +86,12 @@ const ast = parse('+M/M');
 */
 ```
 
+## standardize
+```javascript
+import { standardize } from 'relative-time-expression';
+standardize(' now   - 1   d /w'); // return 'now-d/w'
+```
+
 # API
 
 ## rte-moment
@@ -105,6 +111,8 @@ function decode(exp: string): Expression;
 function encode(exp: InputExpression): string;
 // same as encode
 function stringify(exp: InputExpression): string;
+// format expression as standard
+function standardize(exp: string): string;
 
 class Tokenizer {
   // parse expression to tokens

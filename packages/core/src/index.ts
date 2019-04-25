@@ -12,6 +12,8 @@ export const decode = parse;
 export const stringify = encode;
 export { ExpError } from './error';
 
-export function standardlize(exp: string) {
+export function standardize(exp: string) {
   return encode(parse(exp) as InputExpression);
 }
+
+export const standardlize = standardize;

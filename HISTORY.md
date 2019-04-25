@@ -1,5 +1,5 @@
-# 0.4.1
-- core: add standradlize to format string
+# 0.4.1 & 0.4.2
+- core: add standradize to format string
 - moment-binding: export all function from core
 
 # 0.4.0
