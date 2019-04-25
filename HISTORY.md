@@ -1,3 +1,7 @@
+# 0.4.1
+- core: add standradlize to format string
+- moment-binding: export all function from core
+
 # 0.4.0
 - core: throw error object with infomation instead of message string.
 - moment-binding: add forceEnd to be compatible with grafana pattern.
