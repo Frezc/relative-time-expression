@@ -39,6 +39,15 @@ The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can
 | m | minute |
 | s | second |
 
+### examples
+
+- `now - 12h`: 12 hours ago, same as `moment().subtract(12, 'hours')`
+- `-1d`: 1 day ago, same as `moment().subtract(1, 'day')`
+- `now / d`: the start of today, same as `moment().startOf('day')`
+- `now \ w`: the end of this week, same as `moment().endOf('week')`
+- `now - w / w`: the start of last week, same as `moment().subtract(1, 'week').startOf('week')`
+- `+M\M`: the end of next month, same as `moment().add(1, 'month').endOf('week')`
+
 ## Moment binding
 ```javascript
 import parse from 'rte-moment';
@@ -128,15 +137,6 @@ class Parser {
   parse(): Expression;
 }
 ```
-
-# Expression examples
-
-- `now - 12h`: 12 hours ago, same as `moment().subtract(12, 'hours')`
-- `-1d`: 1 day ago, same as `moment().subtract(1, 'day')`
-- `now / d`: the start of today, same as `moment().startOf('day')`
-- `now \ w`: the end of this week, same as `moment().endOf('week')`
-- `now - w / w`: the start of last week, same as `moment().subtract(1, 'week').startOf('week')`
-- `+M\M`: the end of next month, same as `moment().add(1, 'month').endOf('week')`
 
 # Grammar
 
