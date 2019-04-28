@@ -51,5 +51,30 @@ describe('encode', () => {
       type: 'Expression',
       body: []
     })).toEqual('now');
+  });
+
+  it('show 1 when set displayOne to true', () => {
+    expect(encode({
+      type: 'Expression',
+      body: [
+        {
+          type: 'Offset',
+          op: '+',
+          number: 1,
+          unit: 'M',
+        },
+        {
+          type: 'Period',
+          op: '\\',
+          unit: 'd',
+        },
+        {
+          type: 'Offset',
+          op: '-',
+          number: 1,
+          unit: 'h',
+        },
+      ]
+    } as InputExpression, { displayOne: true })).toEqual('now+1M\\d-1h');
   })
 });

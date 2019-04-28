@@ -1,3 +1,7 @@
+# 0.4.3
+- core: add displayOne option to show 1 when encode
+- moment-binding: add base options to support different timezone
+
 # 0.4.1 & 0.4.2
 - core: add standradize to format string
 - moment-binding: export all function from core

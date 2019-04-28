@@ -39,7 +39,7 @@ The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can
 | m | minute |
 | s | second |
 
-### examples
+### Examples
 
 - `now - 12h`: 12 hours ago, same as `moment().subtract(12, 'hours')`
 - `-1d`: 1 day ago, same as `moment().subtract(1, 'day')`
@@ -58,6 +58,16 @@ const m1 = parse('now-w/w', { forceEnd: true });
 import moment from 'moment';
 moment().subtract(1, 'week').startOf('week').isSame(m); // true
 moment().subtract(1, 'week').endOf('week').isSame(m1); // true
+```
+
+### Custom timezone
+If this lib used at server side, you should use timezone from client.
+```javascript
+import parse from 'rte-moment';
+import moment from 'moment-timezone';
+const m = parse('now/d', { base: moment().tz('Asia/Shanghai') });
+
+moment().tz('Asia/Shanghai').startOf('day').isSame(m); // true
 ```
 
 ## Custom binding

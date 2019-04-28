@@ -16,5 +16,11 @@ describe('bind moment', () => {
     expect(parseToMoment('now-d/d', { forceEnd: true }).isSame(
       moment().subtract(1, 'd').endOf('d')
     )).toEqual(true);
+  });
+
+  it('parse with different timezone', () => {
+    expect(parseToMoment('now/d', { base: moment().utc() }).isSame(
+      moment().utc().startOf('day')
+    )).toBe(true);
   })
 });

@@ -6,9 +6,10 @@ import { parse } from 'relative-time-expression';
 
 export * from 'relative-time-expression';
 
-export default function parseToMoment(exp: string, options?: { forceEnd?: boolean; }) {
+export default function parseToMoment(exp: string, options?: { forceEnd?: boolean; base?: moment.Moment }) {
   const ast = parse(exp);
   const forceEnd = options && options.forceEnd;
+  const base = options && options.base ? options.base : moment();
   return ast.body.reduce((moment, m) => {
     if (m.type === 'Offset') {
       if (m.op === '+') {
@@ -23,5 +24,5 @@ export default function parseToMoment(exp: string, options?: { forceEnd?: boolea
         return moment.endOf(m.unit);
       }
     }
-  }, moment());
+  }, base);
 }
