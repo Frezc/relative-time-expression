@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "start": "lerna bootstrap",
+    "start": "lerna bootstrap && npm run build",
     "clean": "lerna clean --yes",
     "build": "lerna run build",
     "test": "jest",

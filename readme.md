@@ -77,7 +77,7 @@ See moment binding code [here](https://github.com/Frezc/relative-time-expression
 
 ## Parse to ast
 ```javascript
-import { parse, encode } from 'relative-time-expression';
+import { parse } from 'relative-time-expression';
 const ast = parse('+M/M');
 /* ast
 {
@@ -105,10 +105,18 @@ const ast = parse('+M/M');
 */
 ```
 
+## Encode to expression
+```javascript
+import { encode } from 'relative-time-expression';
+encode(ast); // return 'now+M/M'
+encode(ast, { displayOne: true }); // return 'now+1M/M'
+```
+
 ## standardize
 ```javascript
 import { standardize } from 'relative-time-expression';
 standardize(' now   - 1   d /w'); // return 'now-d/w'
+standardize(' now   - 1   d /w', { displayOne: true }); // return 'now-1d/w'
 ```
 
 # API
@@ -116,7 +124,10 @@ standardize(' now   - 1   d /w'); // return 'now-d/w'
 ## rte-moment
 ```typescript
 // parse expression to moment
-function parseToMoment(exp: string, options?: { forceEnd?: boolean; }): moment.Moment;
+function parseToMoment(
+  exp: string,
+  options?: { forceEnd?: boolean; base?: moment.Moment }
+): moment.Moment;
 ```
 
 ## relative-time-expression
@@ -127,11 +138,11 @@ function parse(exp: string): Expression;
 // same as parse
 function decode(exp: string): Expression;
 // encode ast to expression
-function encode(exp: InputExpression): string;
+function encode(exp: InputExpression, options?: { displayOne?: boolean }): string;
 // same as encode
-function stringify(exp: InputExpression): string;
+function stringify(exp: InputExpression, options?: { displayOne?: boolean }): string;
 // format expression as standard
-function standardize(exp: string): string;
+function standardize(exp: string, options?: { displayOne?: boolean }): string;
 
 class Tokenizer {
   // parse expression to tokens
