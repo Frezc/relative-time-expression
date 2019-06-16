@@ -1,6 +1,6 @@
 {
   "name": "period-edge",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Calculate start or end of a custom period",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
