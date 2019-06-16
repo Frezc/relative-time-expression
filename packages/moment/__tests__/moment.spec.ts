@@ -25,11 +25,11 @@ describe('bind moment', () => {
   });
 
   it('parse custom period', () => {
-    expect(parseToMoment('now/2d', { customPeriod: true, base: moment('2019-06-14T17:00:00+08:00') }).isSame(
-      moment('2019-06-13T00:00:00+08:00')
+    expect(parseToMoment('now/2d', { customPeriod: true, base: moment('2019-06-14T17:00:00') }).isSame(
+      moment('2019-06-13T00:00:00')
     )).toBe(true);
-    expect(parseToMoment('now\\2d', { customPeriod: true, base: moment('2019-06-14T17:00:00+08:00') }).isSame(
-      moment('2019-06-14T23:59:59.999+08:00')
+    expect(parseToMoment('now\\2d', { customPeriod: true, base: moment('2019-06-14T17:00:00') }).isSame(
+      moment('2019-06-14T23:59:59.999')
     )).toBe(true);
     expect(() => parseToMoment('now/2M', { customPeriod: true })).toThrow('unsupport custom period `2M`');
   });
