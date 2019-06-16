@@ -29,6 +29,7 @@ describe('encode', () => {
         {
           type: 'Period',
           op: '\\',
+          number: 1,
           unit: 'd',
         },
         {
@@ -40,6 +41,7 @@ describe('encode', () => {
         {
           type: 'Period',
           op: '/',
+          number: 1,
           unit: 'h',
         },
       ]
@@ -66,6 +68,7 @@ describe('encode', () => {
         {
           type: 'Period',
           op: '\\',
+          number: 1,
           unit: 'd',
         },
         {

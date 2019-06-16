@@ -1,7 +1,7 @@
 {
-  "name": "rte-moment",
+  "name": "period-edge",
   "version": "0.4.3",
-  "description": "moment binding for relative time expression",
+  "description": "Calculate start or end of a custom period",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -18,7 +18,9 @@
     "url": "git+https://github.com/Frezc/relative-time-expression.git"
   },
   "keywords": [
-    "relative-time",
+    "period",
+    "startOf",
+    "endOf",
     "moment",
     "time"
   ],
@@ -28,11 +30,6 @@
     "url": "https://github.com/Frezc/relative-time-expression/issues"
   },
   "homepage": "https://github.com/Frezc/relative-time-expression#readme",
-  "dependencies": {
-    "moment": "^2.24.0",
-    "period-edge": "^0.4.3",
-    "relative-time-expression": "^0.4.3"
-  },
   "devDependencies": {
     "rimraf": "^2.6.3",
     "typescript": "^3.4.3"

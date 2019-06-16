@@ -26,7 +26,7 @@ npm install relative-time-expression
 The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can also omit it, like `""`(same as `"now"`), `"-1d"`. After `"now"`, you can append a series of *manipulation*. There are two types of *manipulation*, one is *offset*, the other is *period*.
 
 - *Offset*: Add(+) or Subtract(-) to current moment, constructed with op, integer(optional, default `1`) and unit(you can check blow).
-- *Period*: Point to start(/) or end(\\) of period that current moment fall into, constructed with op and unit.
+- *Period*: Point to start(/) or end(\\) of period that current moment fall into, constructed with op, integer(optional, default `1`) and unit. The custom period (integer larger than 1) are not supported for year and month periods now.
 
 ### unit table
 |unit|duration| 
@@ -47,6 +47,7 @@ The expression usually start from `"now"`, like `"now"`, `"now-1d"`. But you can
 - `now \ w`: the end of this week, same as `moment().endOf('week')`
 - `now - w / w`: the start of last week, same as `moment().subtract(1, 'week').startOf('week')`
 - `+M\M`: the end of next month, same as `moment().add(1, 'month').endOf('week')`
+- `now/4w`: Suppose divide time range from unix timestamp zero by `4 weeks = 4 * 7 * 24 * 60 * 60 * 1000 ms`, and return start of period which `now` fall into.
 
 ## Moment binding
 ```javascript
@@ -96,6 +97,7 @@ const ast = parse('+M/M');
     {
       type: 'Period',
       op: '/',
+      number: 1,
       unit: 'M',
       start: 2,
       end: 4,
@@ -112,12 +114,20 @@ encode(ast); // return 'now+M/M'
 encode(ast, { displayOne: true }); // return 'now+1M/M'
 ```
 
-## standardize
+## Standardize
 ```javascript
 import { standardize } from 'relative-time-expression';
 standardize(' now   - 1   d /w'); // return 'now-d/w'
 standardize(' now   - 1   d /w', { displayOne: true }); // return 'now-1d/w'
 ```
+
+## Enable custom period
+Custom period is disabled default. You should enable it manually.
+```javascript
+import { parse } from 'relative-time-expression';
+parse('+M/4M'); // error!
+parse('+M/4M', { customPeriod: true }); // success
+``` 
 
 # API
 
@@ -126,37 +136,25 @@ standardize(' now   - 1   d /w', { displayOne: true }); // return 'now-1d/w'
 // parse expression to moment
 function parseToMoment(
   exp: string,
-  options?: { forceEnd?: boolean; base?: moment.Moment }
+  options?: { forceEnd?: boolean; base?: moment.Moment; customPeriod?: boolean; }
 ): moment.Moment;
+
+// and all api from relative-time-expression
 ```
 
 ## relative-time-expression
 You can check type definitions [here](https://github.com/Frezc/relative-time-expression/blob/master/packages/core/src/interface.ts).
 ```typescript
 // parse expression to ast
-function parse(exp: string): Expression;
+function parse(exp: string, options?: { customPeriod?: boolean; }): Expression;
 // same as parse
-function decode(exp: string): Expression;
+function decode(exp: string, options?: { customPeriod?: boolean; }): Expression;
 // encode ast to expression
 function encode(exp: InputExpression, options?: { displayOne?: boolean }): string;
 // same as encode
 function stringify(exp: InputExpression, options?: { displayOne?: boolean }): string;
 // format expression as standard
 function standardize(exp: string, options?: { displayOne?: boolean }): string;
-
-class Tokenizer {
-  // parse expression to tokens
-  static parse(exp: string): Token[];
-  constructor(raw: string);
-  parse(): Token[];
-}
-
-class Parser {
-  // parse tokens to ast
-  static parse(tokens: Token[]): Expression;
-  constructor(tokens: Token[]);
-  parse(): Expression;
-}
 ```
 
 # Grammar
@@ -167,7 +165,7 @@ The grammar is simple:
 <expression> ::= [<ws>] [now] *([<ws>] <relative> [<ws>])
 <relative>   ::= <offset> | <period>
 <offset>     ::= (+ | -) <ws> [<number>] <ws> <unit>
-<period>     ::= (/ | \) <ws> <unit>
+<period>     ::= (/ | \) <ws> [<number>] <ws> <unit>
 <number>    ::= ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') [<number>]
 <unit>       ::= 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y'
 <ws>         ::= ' ' | '\r' | '\n' | '\t' [<ws>]

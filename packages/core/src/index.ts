@@ -1,10 +1,12 @@
-import Parser from './parser';
+import Parser, { ParserOptions } from './parser';
 import Tokenizer from './tokenizer';
 import encode from './encode';
 import { InputExpression } from './interface';
 
-export function parse(exp: string) {
-  return Parser.parse(Tokenizer.parse(exp));
+export type ParseOptions = ParserOptions;
+
+export function parse(exp: string, options?: ParseOptions) {
+  return Parser.parse(Tokenizer.parse(exp), options);
 }
 
 export { Parser, Tokenizer, encode };
@@ -13,7 +15,7 @@ export const stringify = encode;
 export { ExpError } from './error';
 
 export function standardize(exp: string, options?: { displayOne?: boolean; }) {
-  return encode(parse(exp) as InputExpression, options);
+  return encode(parse(exp, { customPeriod: true }) as InputExpression, options);
 }
 
 export const standardlize = standardize;

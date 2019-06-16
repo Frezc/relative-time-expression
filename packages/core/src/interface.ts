@@ -18,7 +18,7 @@ interface Location {
 
 export interface InputExpression extends Node {
   type: 'Expression';
-  body: Array<InputOffset | InputOffset>;
+  body: Array<InputOffset | InputPeriod>;
 }
 
 export interface Expression extends Node, Location {
@@ -38,6 +38,7 @@ export type Offset = InputOffset & Location;
 export interface InputPeriod extends Node {
   type: 'Period';
   op: '/' | '\\';
+  number: number;
   unit: Unit;
 }
 

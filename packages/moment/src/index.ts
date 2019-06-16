@@ -2,14 +2,29 @@
  * moment binder
  */
 import moment from 'moment';
-import { parse } from 'relative-time-expression';
+import { parse, ParseOptions } from 'relative-time-expression';
+import { startOf as dateStartOf, endOf as dateEndOf } from 'period-edge';
+import { Period } from 'relative-time-expression/lib/interface';
 
 export * from 'relative-time-expression';
 
-export default function parseToMoment(exp: string, options?: { forceEnd?: boolean; base?: moment.Moment }) {
-  const ast = parse(exp);
-  const forceEnd = options && options.forceEnd;
-  const base = options && options.base ? options.base : moment();
+function startOf(m: moment.Moment, p: Period) {
+  if (p.number > 1) {
+    return moment(dateStartOf(m.toDate(), p.number + p.unit));
+  }
+  return m.startOf(p.unit);
+}
+
+function endOf(m: moment.Moment, p: Period) {
+  if (p.number > 1) {
+    return moment(dateEndOf(m.toDate(), p.number + p.unit));
+  }
+  return m.endOf(p.unit);
+}
+
+export default function parseToMoment(exp: string, options: { forceEnd?: boolean; base?: moment.Moment } & ParseOptions = {}) {
+  const { forceEnd, base = moment(), ...parseOptions } = options;
+  const ast = parse(exp, parseOptions);
   return ast.body.reduce((moment, m) => {
     if (m.type === 'Offset') {
       if (m.op === '+') {
@@ -19,9 +34,9 @@ export default function parseToMoment(exp: string, options?: { forceEnd?: boolea
       }
     } else {
       if (m.op === '/' && !forceEnd) {
-        return moment.startOf(m.unit);
+        return startOf(moment, m);
       } else {
-        return moment.endOf(m.unit);
+        return endOf(moment, m);
       }
     }
   }, base);

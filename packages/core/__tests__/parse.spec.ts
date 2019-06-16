@@ -18,6 +18,7 @@ describe('parse', () => {
         {
           type: 'Period',
           op: '\\',
+          number: 1,
           unit: 'M',
           start: 3,
           end: 5,
@@ -33,7 +34,26 @@ describe('parse', () => {
       end: 0,
       body: []
     });
-  })
+  });
+
+  it('parse custom period', () => {
+    expect(() => parse('/2w', { customPeriod: false })).toThrow('expect unit(e.g. s, m, h, d, ...) but found \`2\` at (1, 2)');
+    expect(parse('/2w', { customPeriod: true })).toEqual({
+      type: 'Expression',
+      start: 0,
+      end: 3,
+      body: [
+        {
+          type: 'Period',
+          op: '/',
+          number: 2,
+          unit: 'w',
+          start: 0,
+          end: 3,
+        }
+      ]
+    });
+  });
 
   it('throw error when token match failed', () => {
     expect(() => parse(' no - d')).toThrow('unexpected token \`n\` at (1, 2)');

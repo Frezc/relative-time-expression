@@ -85,6 +85,7 @@ test('tokenize correctly', () => {
         type: 'Period',
         op: '/',
         unit: 'w',
+        number: 1,
         start: 10,
         end: 13,
       },

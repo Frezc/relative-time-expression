@@ -1,14 +1,18 @@
 import { Token, Expression, Offset, Period, Unit } from "./interface";
 import { createError } from "./error";
 
+export interface ParserOptions {
+  customPeriod?: boolean;
+}
+
 export default class Parser {
-  static parse(tokens: Token[]) {
-    return new Parser(tokens).parse();
+  static parse(tokens: Token[], options?: ParserOptions) {
+    return new Parser(tokens, options).parse();
   }
 
   private iter: number = 0;
 
-  constructor(private readonly tokens: Token[]) {}
+  constructor(private readonly tokens: Token[], private readonly options: ParserOptions = {}) {}
 
   get pop() {
     return this.tokens[this.iter++];
@@ -87,10 +91,17 @@ export default class Parser {
     const start = this.top.start;
     const op = this.pop.raw as '/' | '\\';
     this.parseWs();
+    let number = 1;
+    if (this.options.customPeriod && this.top.type === 'number') {
+      number = parseInt(this.pop.raw, 10);
+    }
+    this.parseWs();
+
     const unitToken = this.parseUnit();
     return {
       type: 'Period',
       op,
+      number,
       unit: unitToken.raw as Unit,
       start,
       end: unitToken.end,
