@@ -4,6 +4,7 @@
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/Frezc/relative-time-expression/master.svg?style=flat-square)](https://codecov.io/gh/Frezc/relative-time-expression/)
 [![relative-time-expression](https://img.shields.io/npm/v/relative-time-expression.svg?style=flat-square)](https://www.npmjs.org/package/relative-time-expression)
 [![rte-moment](https://img.shields.io/npm/v/rte-moment.svg?style=flat-square)](https://www.npmjs.org/package/rte-moment)
+[![period-edge](https://img.shields.io/npm/v/period-edge.svg?style=flat-square)](https://www.npmjs.org/package/period-edge)
 
 This is a expression for relative time. Inspired by Time Units of [grafana](https://grafana.com/).
 

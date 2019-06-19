@@ -1,3 +1,7 @@
+# 0.5.0
+- new package: [period-edge](https://www.npmjs.com/package/period-edge). Help moment-binding to calculate custom period.
+- core, moment-binding: add param `customPeriod` to enable custom period. You can use syntax like `now/4w` if enabled.
+
 # 0.4.3
 - core: add displayOne option to show 1 when encode
 - moment-binding: add base options to support different timezone
