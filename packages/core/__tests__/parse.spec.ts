@@ -78,5 +78,9 @@ describe('parse', () => {
   it('throw error when input is not string', () => {
     let input: any;
     expect(() => parse(input)).toThrow('unexpected input `undefined`');
+    input = null;
+    expect(() => parse(input)).toThrow('unexpected input `null`');
+    input = 12;
+    expect(() => parse(input)).toThrow('unexpected input `12s`');
   })
 });
