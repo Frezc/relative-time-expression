@@ -74,4 +74,9 @@ describe('parse', () => {
   it('throw end of input error when stop after operator in period', () => {
     expect(() => parse('now/')).toThrow('expect unit(e.g. s, m, h, d, ...) but get the end of input');
   });
+
+  it('throw error when input is not string', () => {
+    let input: any;
+    expect(() => parse(input)).toThrow('unexpected input `undefined`');
+  })
 });

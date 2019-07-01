@@ -1,3 +1,6 @@
+# 0.5.1
+- core[improvement]: throw error when input is not string
+
 # 0.5.0
 - new package: [period-edge](https://www.npmjs.com/package/period-edge). Help moment-binding to calculate custom period.
 - core, moment-binding: add param `customPeriod` to enable custom period. You can use syntax like `now/4w` if enabled.

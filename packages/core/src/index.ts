@@ -6,7 +6,10 @@ import { InputExpression } from './interface';
 export type ParseOptions = ParserOptions;
 
 export function parse(exp: string, options?: ParseOptions) {
-  return Parser.parse(Tokenizer.parse(exp), options);
+  if (typeof exp === 'string') {
+    return Parser.parse(Tokenizer.parse(exp), options);
+  }
+  throw new Error(`unexpected input \`${exp}\``);
 }
 
 export { Parser, Tokenizer, encode };

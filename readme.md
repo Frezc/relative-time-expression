@@ -167,7 +167,7 @@ The grammar is simple:
 <relative>   ::= <offset> | <period>
 <offset>     ::= (+ | -) <ws> [<number>] <ws> <unit>
 <period>     ::= (/ | \) <ws> [<number>] <ws> <unit>
-<number>    ::= ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') [<number>]
+<number>     ::= ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9') [<number>]
 <unit>       ::= 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y'
 <ws>         ::= ' ' | '\r' | '\n' | '\t' [<ws>]
 ```
