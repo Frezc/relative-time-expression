@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/Frezc/relative-time-expression#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "jest": "^24.7.1",
-    "lerna": "^3.13.2",
+    "@types/jest": "^24.0.17",
+    "jest": "^24.8.0",
+    "lerna": "^3.16.4",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.3"
+    "typescript": "^3.5.3"
   }
 }
