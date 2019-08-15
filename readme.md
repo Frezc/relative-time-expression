@@ -8,6 +8,8 @@
 
 This is a expression for relative time. Inspired by Time Units of [grafana](https://grafana.com/).
 
+[Here](https://frezc.github.io/2019/04/26/relative-time-expression/) is a chinese blog about why I create this library.
+
 # Install
 
 ## Install moment binding
